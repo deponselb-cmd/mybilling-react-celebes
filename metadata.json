@@ -1,0 +1,6 @@
+{
+  "name": "Celebes Synergi",
+  "description": "Professional ISP SaaS Billing and Management Platform with Map Locator and Real-time Analytics",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}

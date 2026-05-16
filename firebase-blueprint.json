@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "Customer": {
+      "title": "Customer",
+      "description": "ISP Customer record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "plan": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "isolated", "pending"] },
+        "address": { "type": "string" },
+        "pppoe": { "type": "string" },
+        "startDate": { "type": "string", "format": "date" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "invoiceAmount": { "type": "number" },
+        "invoiceStatus": { "type": "string", "enum": ["paid", "pending", "overdue"] }
+      },
+      "required": ["id", "name", "phone", "plan", "status", "address"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Staff member of the ISP",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["Super Admin", "Technician", "Support", "Viewer"] },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "lastLogin": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role", "status"]
+    },
+    "InventoryItem": {
+      "title": "Inventory Item",
+      "description": "Stock item for POS and deployment",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "itemName": { "type": "string" },
+        "sku": { "type": "string" },
+        "category": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unitPrice": { "type": "number" }
+      },
+      "required": ["id", "itemName", "sku", "quantity", "unitPrice"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "POS transaction record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "saleId": { "type": "string" },
+        "time": { "type": "string" },
+        "total": { "type": "number" },
+        "method": { "type": "string", "enum": ["cash", "card", "qris"] },
+        "discount": { "type": "number" }
+      },
+      "required": ["id", "saleId", "total", "method"]
+    }
+  },
+  "firestore": {
+    "customers": {
+      "schema": "Customer",
+      "description": "Collection of ISP customers"
+    },
+    "staff": {
+      "schema": "User",
+      "description": "Collection of staff members"
+    },
+    "inventory": {
+      "schema": "InventoryItem",
+      "description": "Inventory stock"
+    },
+    "sales": {
+      "schema": "Sale",
+      "description": "POS sales history"
+    }
+  }
+}
